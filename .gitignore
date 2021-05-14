@@ -47,3 +47,13 @@
 /robots.txt
 /update.php
 /web.config
+
+#my ignore
+/web/sites/default/files/*
+
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+
+.idea
