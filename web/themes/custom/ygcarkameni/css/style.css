@@ -37,6 +37,18 @@ ol.flex-control-nav {
   z-index: 10;
 }
 
+.flex-control-paging li a.flex-active {
+  background-color: rgb(0, 39, 69);
+}
+
 a.flex-next, a.flex-prev {
   height: 60px;
+}
+
+.flexslider {
+  margin: 0;
+}
+
+#block-ygcarkameni-content ul.pagination {
+  padding: 0;
 }

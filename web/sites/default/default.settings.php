@@ -1,6 +1,6 @@
 <?php
 
-// @codingStandardsIgnoreFile
+// phpcs:ignoreFile
 
 /**
  * @file
@@ -253,7 +253,6 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
-
 # $settings['config_sync_directory'] = '/directory/outside/webroot';
 
 /**
@@ -293,7 +292,6 @@ $settings['hash_salt'] = '';
  * custom code that changes the container, changing this identifier will also
  * allow the container to be invalidated as soon as code is deployed.
  */
-
 # $settings['deployment_identifier'] = \Drupal::VERSION;
 
 /**
@@ -310,18 +308,19 @@ $settings['hash_salt'] = '';
 $settings['update_free_access'] = FALSE;
 
 /**
- * Fallback to HTTP for Update Manager.
+ * Fallback to HTTP for Update Manager and for fetching security advisories.
  *
- * If your Drupal site fails to connect to updates.drupal.org using HTTPS to
- * fetch Drupal core, module and theme update status, you may uncomment this
- * setting and set it to TRUE to allow an insecure fallback to HTTP. Note that
- * doing so will open your site up to a potential man-in-the-middle attack. You
- * should instead attempt to resolve the issues before enabling this option.
+ * If your site fails to connect to updates.drupal.org over HTTPS (either when
+ * fetching data on available updates, or when fetching the feed of critical
+ * security announcements), you may uncomment this setting and set it to TRUE to
+ * allow an insecure fallback to HTTP. Note that doing so will open your site up
+ * to a potential man-in-the-middle attack. You should instead attempt to
+ * resolve the issues before enabling this option.
  * @see https://www.drupal.org/docs/system-requirements/php-requirements#openssl
  * @see https://en.wikipedia.org/wiki/Man-in-the-middle_attack
  * @see \Drupal\update\UpdateFetcher
+ * @see \Drupal\system\SecurityAdvisories\SecurityAdvisoriesFetcher
  */
-
 # $settings['update_fetch_with_http_fallback'] = TRUE;
 
 /**
@@ -340,11 +339,8 @@ $settings['update_free_access'] = FALSE;
  * You can also define an array of host names that can be accessed directly,
  * bypassing the proxy, in $settings['http_client_config']['proxy']['no'].
  */
-
 # $settings['http_client_config']['proxy']['http'] = 'http://proxy_user:proxy_pass@example.com:8080';
-
 # $settings['http_client_config']['proxy']['https'] = 'http://proxy_user:proxy_pass@example.com:8080';
-
 # $settings['http_client_config']['proxy']['no'] = ['127.0.0.1', 'localhost'];
 
 /**
@@ -377,14 +373,12 @@ $settings['update_free_access'] = FALSE;
  * Be aware, however, that it is likely that this would allow IP
  * address spoofing unless more advanced precautions are taken.
  */
-
 # $settings['reverse_proxy'] = TRUE;
 
 /**
  * Specify every reverse proxy IP address in your environment.
  * This setting is required if $settings['reverse_proxy'] is TRUE.
  */
-
 # $settings['reverse_proxy_addresses'] = ['a.b.c.d', ...];
 
 /**
@@ -393,17 +387,20 @@ $settings['update_free_access'] = FALSE;
  * Sets which headers to trust from your reverse proxy.
  *
  * Common values are:
- * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * - \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  *
  * Note the default value of
  * @code
- * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
+ * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  * @endcode
  * is not secure by default. The value should be set to only the specific
  * headers the reverse proxy uses. For example:
  * @code
- * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL
+ * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * @endcode
  * This would trust the following headers:
  * - X_FORWARDED_FOR
@@ -411,12 +408,15 @@ $settings['update_free_access'] = FALSE;
  * - X_FORWARDED_PROTO
  * - X_FORWARDED_PORT
  *
- * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * @see \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  * @see \Symfony\Component\HttpFoundation\Request::setTrustedProxies
  */
+# $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
 
-# $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
 
 /**
  * Page caching:
@@ -434,8 +434,8 @@ $settings['update_free_access'] = FALSE;
  * HTTP proxy, and bypass the reverse proxy if one is used) in order to avoid
  * getting cached pages from the proxy.
  */
-
 # $settings['omit_vary_cookie'] = TRUE;
+
 
 /**
  * Cache TTL for client error (4xx) responses.
@@ -447,7 +447,6 @@ $settings['update_free_access'] = FALSE;
  * of client error responses set the value to 0. Currently applies only to
  * page_cache module.
  */
-
 # $settings['cache_ttl_4xx'] = 3600;
 
 /**
@@ -458,7 +457,6 @@ $settings['update_free_access'] = FALSE;
  *
  * @see \Drupal\Core\Form\FormCache::setCache()
  */
-
 # $settings['form_cache_expiration'] = 21600;
 
 /**
@@ -469,7 +467,6 @@ $settings['update_free_access'] = FALSE;
  *
  * @see https://getcomposer.org/doc/articles/autoloader-optimization.md
  */
-
 # $settings['class_loader_auto_detect'] = FALSE;
 
 /**
@@ -494,7 +491,6 @@ $settings['update_free_access'] = FALSE;
  *
  * Remove the leading hash signs to disable.
  */
-
 # $settings['allow_authorize_operations'] = FALSE;
 
 /**
@@ -502,9 +498,7 @@ $settings['update_free_access'] = FALSE;
  *
  * Value should be in PHP Octal Notation, with leading zero.
  */
-
 # $settings['file_chmod_directory'] = 0775;
-
 # $settings['file_chmod_file'] = 0664;
 
 /**
@@ -518,7 +512,6 @@ $settings['update_free_access'] = FALSE;
  * security by serving user-uploaded files from a different domain or subdomain
  * pointing to the same server. Do not include a trailing slash.
  */
-
 # $settings['file_public_base_url'] = 'http://downloads.example.com/files';
 
 /**
@@ -528,7 +521,6 @@ $settings['update_free_access'] = FALSE;
  * must exist and be writable by Drupal. This directory must be relative to
  * the Drupal installation directory and be accessible over the web.
  */
-
 # $settings['file_public_path'] = 'sites/default/files';
 
 /**
@@ -544,7 +536,6 @@ $settings['update_free_access'] = FALSE;
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-
 # $settings['file_private_path'] = '';
 
 /**
@@ -558,7 +549,6 @@ $settings['update_free_access'] = FALSE;
  *
  * @see \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory()
  */
-
 # $settings['file_temp_path'] = '/tmp';
 
 /**
@@ -567,7 +557,6 @@ $settings['update_free_access'] = FALSE;
  * Set the minimum interval between each session write to database.
  * For performance reasons it defaults to 180.
  */
-
 # $settings['session_write_interval'] = 180;
 
 /**
@@ -582,13 +571,9 @@ $settings['update_free_access'] = FALSE;
  * The "en" part of the variable name, is dynamic and can be any langcode of
  * any added language. (eg locale_custom_strings_de for german).
  */
-
 # $settings['locale_custom_strings_en'][''] = [
-
 #   'forum'      => 'Discussion board',
-
 #   '@count min' => '@count minutes',
-
 # ];
 
 /**
@@ -601,7 +586,6 @@ $settings['update_free_access'] = FALSE;
  *
  * Note: This setting does not apply to installation and update pages.
  */
-
 # $settings['maintenance_theme'] = 'bartik';
 
 /**
@@ -624,10 +608,23 @@ $settings['update_free_access'] = FALSE;
  * and increase the limits of these variables.  For more information, see
  * http://php.net/manual/pcre.configuration.php.
  */
-
 # ini_set('pcre.backtrack_limit', 200000);
-
 # ini_set('pcre.recursion_limit', 200000);
+
+/**
+ * Add Permissions-Policy header to disable Google FLoC.
+ *
+ * By default, Drupal sends the 'Permissions-Policy: interest-cohort=()' header
+ * to disable Google's Federated Learning of Cohorts feature, introduced in
+ * Chrome 89.
+ *
+ * See https://en.wikipedia.org/wiki/Federated_Learning_of_Cohorts for more
+ * information about FLoC.
+ *
+ * If you don't wish to disable FLoC in Chrome, you can set this value
+ * to FALSE.
+ */
+# $settings['block_interest_cohort'] = TRUE;
 
 /**
  * Configuration overrides.
@@ -651,9 +648,7 @@ $settings['update_free_access'] = FALSE;
  * configuration values in settings.php will not fire any of the configuration
  * change events.
  */
-
 # $config['system.site']['name'] = 'My Drupal site';
-
 # $config['user.settings']['anonymous'] = 'Visitor';
 
 /**
@@ -679,11 +674,8 @@ $settings['update_free_access'] = FALSE;
  *
  * Remove the leading hash signs if you would like to alter this functionality.
  */
-
 # $config['system.performance']['fast_404']['exclude_paths'] = '/\/(?:styles)|(?:system\/files)\//';
-
 # $config['system.performance']['fast_404']['paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
-
 # $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
 /**
@@ -698,7 +690,6 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * tracking purposes, for testing a service container with an error condition or
  * to test a service container that throws an exception.
  */
-
 # $settings['container_base_class'] = '\Drupal\Core\DependencyInjection\Container';
 
 /**
@@ -708,7 +699,6 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * alternate implementation YAML parser. The class must implement the
  * \Drupal\Component\Serialization\SerializationInterface interface.
  */
-
 # $settings['yaml_parser_class'] = NULL;
 
 /**
@@ -808,7 +798,6 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-
 #
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
