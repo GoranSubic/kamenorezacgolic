@@ -1,0 +1,9 @@
+name: Kameni
+description: Module for Kameni presentation
+type: module
+core_version_requirement: ^8 || ^9
+package: Kameni
+
+dependencies:
+  - drupal:node
+  - drupal:admin_toolbar
