@@ -29,6 +29,19 @@ body {
   justify-content: left;
 }
 
+#menu.navbar.navbar-expand-lg #block-ygcarkameni-main-menu ul.navbar-nav {
+  background-color: rgb(0, 39, 69);
+}
+#menu.navbar.navbar-expand-lg.sticky #block-ygcarkameni-main-menu ul.navbar-nav {
+  background-color: #fff;
+}
+#menu.navbar.navbar-expand-lg #block-ygcarkameni-main-menu ul.navbar-nav li a {
+  line-height: 20px;
+}
+#menu.navbar.navbar-expand-lg.sticky #block-ygcarkameni-main-menu ul.navbar-nav li a {
+  line-height: 20px;
+}
+
 ol.flex-control-nav {
   width: 100%;
   position: absolute;
@@ -51,4 +64,22 @@ a.flex-next, a.flex-prev {
 
 #block-ygcarkameni-content ul.pagination {
   padding: 0;
+}
+
+#block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image {
+  display: flex;
+  /*flex-direction: row;*/
+  flex-wrap: wrap;
+}
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 480px) {
+  #block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+#block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image > div.field__item {
+  margin: 5px;
+  padding: 5px;
+  flex: 20%;
 }
