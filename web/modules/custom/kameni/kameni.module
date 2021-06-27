@@ -2,11 +2,48 @@
 
 /**
  * @file
- * Implementing functionalities from tutorials and examples.
+ * Implementing functionalities for kameni module.
  *
  * @author Goran Subić
  *
  * @version 0.1
  */
 
+use \Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Implements hook_form_alter().
+ */
+function kameni_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['confirmation'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Confirmation'),
+    '#weight' => 90,
+  ];
+
+  $form['confirmation']['confirmation_text'] = [
+    '#markup' => t("After we receive your message we will respond as fast as it is possibile. Thanks for your message!"),
+    '#prefix' => '<p>',
+    '#suffix' => '</p>',
+  ];
+
+  $form['confirmation']['confirmation_agree'] = [
+    '#type' => 'checkbox',
+    '#title' => t("I agree"),
+  ];
+
+  // Add a validation handler where we'll check the checkbox above.
+  $form['#validate'][] = 'kameni_form_contact_message_feedback_form_validate';
+
+}
+
+/**
+ * Validate that the user has read and confirmed that is not bot.
+ */
+function kameni_form_contact_message_feedback_form_validate($form, FormStateInterface $form_state) {
+  $confirmation_agree = $form_state->getValue('confirmation_agree');
+  if ($confirmation_agree !== 1) {
+    $form_state->setErrorByName('confirmation_agree', t('Please confirm agreement!'));
+  }
+}

@@ -83,3 +83,18 @@ a.flex-next, a.flex-prev {
   padding: 5px;
   flex: 20%;
 }
+
+#contact-message-feedback-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+fieldset#edit-confirmation {
+  max-width: 480px;
+}
+fieldset#edit-confirmation .fieldset-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
