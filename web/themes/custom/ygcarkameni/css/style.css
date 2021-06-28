@@ -98,3 +98,17 @@ fieldset#edit-confirmation .fieldset-wrapper {
   flex-direction: column;
   align-items: center;
 }
+
+/*
+
+#block-ygcarkameni-content .node__content > *:first-child {
+  margin: 50px 50px 0 50px;
+  float: left;
+}
+#block-ygcarkameni-content .node__content > *:nth-child(2) {
+  margin: 50px 50px 0 50px;
+  padding: 50px;
+  text-align: center;
+}
+*/
+

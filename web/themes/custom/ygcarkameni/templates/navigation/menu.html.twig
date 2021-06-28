@@ -46,7 +46,8 @@
       <li{{ item.attributes.addClass(classes) }}>
 
         {% if item.title == 'Contact' %}
-          {{ link('Kontakt stranica', item.url) }}
+          {% set contact_page = 'Contact page'|t %}
+          {{ link(contact_page, item.url) }}
         {% else %}
           {{ link(item.title, item.url) }}
         {% endif %}
