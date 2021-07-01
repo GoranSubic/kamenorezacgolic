@@ -102,6 +102,23 @@ a.flex-next, a.flex-prev {
   .views-view-grid .gallery-list-row .gallery-list-col img {
     max-height: 240px;
   }
+
+  /* About Us Basic Page */
+  #block-ygcarkameni-content article.node--type-aboutus .node__content {
+    flex-direction: column;
+  }
+  #block-ygcarkameni-content article.node--type-aboutus .node__content .field--name-field-title {
+    padding: 5px;
+    max-width: 100% !important;
+  }
+  #block-ygcarkameni-content article.node--type-aboutus .node__content .field--name-field-fotografija {
+    margin: 5px;
+    padding: 5px;
+    max-width: 66% !important;
+  }
+  #block-ygcarkameni-content article.node--type-aboutus .node__content .field--name-field-fotografija img {
+    height: 220px;
+  }
 }
 #block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image.field__items > div.field__item {
   margin: 5px;
@@ -191,4 +208,38 @@ fieldset#edit-confirmation .fieldset-wrapper {
 }
 .views-view-grid .gallery-list-row .gallery-list-col img:hover {
   padding: 2px;
+}
+
+/* About Us Basic Page */
+#block-ygcarkameni-content article.node--type-aboutus .node__content {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#block-ygcarkameni-content article.node--type-aboutus .node__content .field--name-field-title {
+  margin: 50px auto 0 0;
+  padding: 30px 50px 30px 50px;
+  text-align: center;
+  max-width: 66%;
+  justify-content: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+#block-ygcarkameni-content article.node--type-aboutus .node__content .field--name-field-fotografija {
+  margin: 50px auto auto auto;
+  /*padding: 5px;*/
+  text-align: center;
+  max-width: 33%;
+}
+#block-ygcarkameni-content article.node--type-aboutus .node__content .field--name-field-fotografija img {
+  border: 2px solid #032742;
+  border-radius: 10px 4px;
+  width: 100%;
+}
+
+#block-ygcarkameni-content article.node--type-aboutus .node__content p {
+  font-size: 1.2em;
+  padding: 30px;
 }
