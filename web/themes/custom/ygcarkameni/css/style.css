@@ -88,15 +88,20 @@ a.flex-next, a.flex-prev {
 
 @media (max-width: 768px) {
   #block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image.field__items > div.field__item {
-    width: 15%;
+    width: 40% !important;
   }
   #block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image.field__items > div.field__item img {
     margin: 20%;
   }
 
-.views-view-grid .gallery-list-row .gallery-list-col img {
-  max-height: 240px;
-}
+  .views-view-grid .gallery-list-row {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .views-view-grid .gallery-list-row .gallery-list-col img {
+    max-height: 240px;
+  }
 }
 #block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image.field__items > div.field__item {
   margin: 5px;
