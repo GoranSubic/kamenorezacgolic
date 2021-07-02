@@ -167,6 +167,9 @@ a.flex-next, a.flex-prev {
   align-content: center;
   align-items: center;
 }
+#block-ygcarkameni-content .node--type-gallery .node__content > *:nth-child(2) p {
+  font-size: 1.2em;
+}
 #block-ygcarkameni-content .node--type-gallery .node__content > *:last-child {
   width: 100%;
 }
@@ -186,6 +189,14 @@ fieldset#edit-confirmation .fieldset-wrapper {
   align-items: center;
 }
 
+
+#contact-message-feedback-form .js-form-item.form-item {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 480px;
+}
+
 .views-view-grid .gallery-list-row {
   display: flex;
   flex-direction: row;
@@ -193,7 +204,7 @@ fieldset#edit-confirmation .fieldset-wrapper {
 }
 .views-view-grid .gallery-list-row .gallery-list-col {
   margin: 5px;
-  padding: 5px;
+  padding: 15px;
   display: flex;
   max-width: 100%;
   justify-content: center;
@@ -208,6 +219,9 @@ fieldset#edit-confirmation .fieldset-wrapper {
 }
 .views-view-grid .gallery-list-row .gallery-list-col img:hover {
   padding: 2px;
+}
+.views-view-grid .gallery-list-row .gallery-list-col .views-field-title {
+  font-size: 1.5em;
 }
 
 /* About Us Basic Page */
