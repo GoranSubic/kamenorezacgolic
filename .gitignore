@@ -38,7 +38,7 @@
 /.gitattributes
 /.htaccess
 /autoload.php
-/composer.json
+#/composer.json
 /composer.lock
 /example.gitignore
 /index.php
