@@ -80,6 +80,11 @@ a.flex-next, a.flex-prev {
   #block-ygcarkameni-content .node--type-gallery .field--name-field-images.field--type-image.field__items > div.field__item img {
     width: auto !important;
   }
+
+  #contact-message-feedback-form .js-form-item.form-item {
+    max-width: 240px !important;
+  }
+
 }
 
 #block-ygcarkameni-content .node--type-gallery .field--name-field-images {
@@ -256,4 +261,8 @@ fieldset#edit-confirmation .fieldset-wrapper {
 #block-ygcarkameni-content article.node--type-aboutus .node__content p {
   font-size: 1.2em;
   padding: 30px;
+}
+
+#block-ygcarkameni-branding .navbar-brand img {
+  margin: auto auto 7px auto;
 }
